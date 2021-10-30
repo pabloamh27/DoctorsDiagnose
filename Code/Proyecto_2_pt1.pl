@@ -1,4 +1,13 @@
-%HECHOS_DE_RUTAS
+% ----------------------------------------------------------------------
+%                                                   TAREA PROGRAMADA III
+% ----------------------------------------------------------------------
+% JONATHAN QUESADA SALAS      - 2020023583
+% PABLO ALBERTO MUÑOZ HIDALGO - 2020031899
+% ----------------------------------------------------------------------
+
+% -------------------------------------------------------------------------------------------
+% DEFINICION DE HECHOS
+% -------------------------------------------------------------------------------------------
 urbanizacion(a,b,10).
 urbanizacion(b,c,3).
 urbanizacion(b,e,5).
@@ -23,9 +32,6 @@ urbanizacion_inv(j,f,3).
 urbanizacion_inv(j,g,1).
 urbanizacion_inv(f,h,1).
 urbanizacion_inv(i,h,6).
-
-
-%HECHOS_DE_COMISIONES
 comisiones(a, b, 5.0).
 comisiones(b, c, 1.0).
 comisiones(b, e, 2.0).
@@ -52,8 +58,9 @@ comisiones(f, h, 0.5).
 comisiones(i, h, 3.0).
 comisiones(_ , [], 0.0).
 
-
-%PROGRAMA_CON_EL_CAMINO_DERECHO
+% -------------------------------------------------------------------------------------------
+% FUNCION RECURSIVA CAMINO QUE VA CONECTANDO LOS NODOS
+% -------------------------------------------------------------------------------------------
 camino(A, B, [A, B], X) :-
     urbanizacion(A, B, X).
 camino(A, B, CaminoAB, Largo) :-
@@ -62,6 +69,10 @@ camino(A, B, CaminoAB, Largo) :-
     CaminoAB = [A | CaminoCB],
     Largo is X + LargoCB.
 
+
+% -------------------------------------------------------------------------------------------
+% FUNCION PRINCIPAL QUE SE LLAMA EN LA INTERFAZ, ORDENA EL CAMINO Y LO IMPRIME AL USUARIO, LLAMA A LA FUNCION CAMINO
+% -------------------------------------------------------------------------------------------
 caminoMasCorto(A, B) :-
     findall(p(Costo, Camino),
             camino(A, B, Camino, Costo),
@@ -72,7 +83,9 @@ caminoMasCorto(A, B) :-
     printComisiones(Camino1, Comision1),
     writef(' (con distancia de %d km y una comision de %d%)\n', [Costo1, Comision1]).
 
-%PROGRAMA_CON_EL_CAMINO_INVERTIDO
+% -------------------------------------------------------------------------------------------
+% FUNCION RECURSIVA CAMINO INVERSO QUE VA CONECTANDO LOS NODOS
+% -------------------------------------------------------------------------------------------
 camino_inv(A, B, [A, B], X) :-
     urbanizacion_inv(A, B, X).
 camino_inv(A, B, CaminoAB, Largo) :-
@@ -81,6 +94,10 @@ camino_inv(A, B, CaminoAB, Largo) :-
     CaminoAB = [A | CaminoCB],
     Largo is X + LargoCB.
 
+
+% -------------------------------------------------------------------------------------------
+% FUNCION PRINCIPAL PARA EL CAMINO INVERTIDO QUE SE LLAMA EN LA INTERFAZ, ORDENA EL CAMINO Y LO IMPRIME AL USUARIO, LLAMA A LA FUNCION CAMINO INVERTIDO
+% -------------------------------------------------------------------------------------------
 caminoMasCorto_inv(A, B) :-
     findall(p(Costo, Camino),
             camino_inv(A, B, Camino, Costo),
@@ -91,7 +108,9 @@ caminoMasCorto_inv(A, B) :-
     printComisiones(Camino1, Comision1),
     writef(' (con distancia de %d km y una comision de %d%)\n', [Costo1, Comision1]).
 
-%IMPRIME_COMISIONES
+% -------------------------------------------------------------------------------------------
+% FUNCION RECURSIVA QUE RECORRE LA LISTA DEL CAMINO SOLUCION E IMPRIME EL COSTO EN COMISIONES
+% -------------------------------------------------------------------------------------------
 printComisiones([], 0).
 printComisiones([X|T], Y) :-
 	car(T, Cabeza),
@@ -99,11 +118,15 @@ printComisiones([X|T], Y) :-
     printComisiones(T, C),
     Y is Comision + C.
 
-%EXTRAE_LA_CABEZA_DE_UNA_LISTA
+% -------------------------------------------------------------------------------------------
+% EXTRAE LA CABEZA DE UNA LISTA, SE USA EN PRINT COMISIONES
+% -------------------------------------------------------------------------------------------
 car([], []).
 car([X|Y], X).
 
-%IMPRIME_EL_CAMINO_TOMADO
+% -------------------------------------------------------------------------------------------
+% FUNCION RECURSIVA QUE RECORRE LA LISTA DE SOLUCION E IMPRIME LA SOLUCION
+% -------------------------------------------------------------------------------------------
 printCamino([]).
 printCamino([X]) :-
     !, write(X).
@@ -112,7 +135,9 @@ printCamino([X|T]) :-
     write(', '),
     printCamino(T).
 
-%PRUEBAS
+% -------------------------------------------------------------------------------------------
+% PRUEBAS
+% -------------------------------------------------------------------------------------------
 %caminoMasCorto(a,i).
 %caminoMasCorto(a,h).
 %caminoMasCorto(a,j).
