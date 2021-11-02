@@ -38,8 +38,11 @@ arreglo_escribir_lista([Cabeza| Cola]) :-
 %                           SE ALMACENA LA RESPUESTA DADA POR EL USUARIO
 % ----------------------------------------------------------------------
 respuesta(Opcion) :-
+    % Obtenga un solo carácter de la secuencia de entrada 'usuario' (independientemente de la secuencia de entrada actual).
     get_single_char(Code),
+    % Es un número entero no negativo. Tenga en cuenta que esto puede generar una excepción si la codificación del flujo de salida no puede representar el código
     put_code(Code), nl,
+    % Convierta entre un solo carácter (un átomo de longitud 1) y su código de carácter (un número entero que denota el carácter correspondiente).
     char_code(Opcion, Code).
 
 
@@ -47,161 +50,161 @@ respuesta(Opcion) :-
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE ARDOR AL ORINAR
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,ardor_orinar) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene dolor o ardor al orinar? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene dolor o ardor al orinar? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE ARDOR AL ORINAR
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,ardor_orinar) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene dolor o ardor al orinar? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene dolor o ardor al orinar? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE FIEBRE
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,fiebre) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene fiebre? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene fiebre? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE DOLOR EN EL COITO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,dolor_coito) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene dolor en el coito? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene dolor en el coito? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE LLAGAS EN LOS GENITALES
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,llagas_genitales) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene llagas en los genitales? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene llagas en los genitales? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE TOS
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,tos) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene voz seca? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene voz seca? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE CANSANCIO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,cansancio) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene cansancio mas de lo usual? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene cansancio mas de lo usual? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE PERDIDA DE GUSTO Y OLFATO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,perdida_gusto_olfato) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene perdida de olfato y gusto? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene perdida de olfato y gusto? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE DIARREA
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,diarrea) :-
-    arreglo_escribir_lista(['¿',Paciente,' ultimamente tiene diarrea? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' ultimamente tiene diarrea? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE DOLOR ABDOMINAL
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,dolor_abdominal) :-
-    arreglo_escribir_lista(['¿',Paciente,' tienes dolor abdominal? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tienes dolor abdominal? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE EL SENTIMIENTO DE PESADEZ
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,pesadez) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene una sensacion de pesadez? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene una sensacion de pesadez? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE ACIDEZ
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,acidez) :-
-    arreglo_escribir_lista(['¿',Paciente,' sientes una sensacion de acides persistente? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' sientes una sensacion de acides persistente? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE NAUSEAS
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,nauseas) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene nauseas? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene nauseas? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE ESTRES
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,estres) :-
-    arreglo_escribir_lista(['¿',Paciente,' has pasado por una situacion de mucho estres recientemente? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' has pasado por una situacion de mucho estres recientemente? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE VOMITO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,vomito) :-
-    arreglo_escribir_lista(['¿',Paciente,' vomita frecuentemente? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' vomita frecuentemente? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE UN DOLOR EN EL OÍDO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,dolor_oido) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene un dolor agudo en el oido? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene un dolor agudo en el oido? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE UN SANGRADO NASAL
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,sangrado_nasal) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene sangrado nasal? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene sangrado nasal? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE UN CAMBIO DE VISIÓN
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,cambio_vision) :-
-    arreglo_escribir_lista(['¿',Paciente,' tiene cambios en la vision? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' tiene cambios en la vision? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE TIENE UNA HEMORRAGIA
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,hemorragia) :-
-    arreglo_escribir_lista(['¿',Paciente,' recientemete has tenido alguna hemorragia? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' recientemete has tenido alguna hemorragia? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % VALIDACIÓN PARA SABER SI EL PACIENTE COME O NO
 % ----------------------------------------------------------------------
 sintoma_enfermedad_pregunta(Paciente,no_comer) :-
-    arreglo_escribir_lista(['¿',Paciente,' te cuesta comer? (y/n)']),
+    arreglo_escribir_lista(['¿',Paciente,' te cuesta comer? (s/n)']),
     respuesta(Opcion),
-    Opcion='y'.
+    Opcion='s'.
 
 % ----------------------------------------------------------------------
 % REQUISITOS PARA UNA INFECCIÓN DE TRANSMISIÓN SEXUAL
