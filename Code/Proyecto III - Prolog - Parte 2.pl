@@ -9,15 +9,29 @@
 %        EL MENÚ INICIAL PARA INGRESAR EL NOMBRE DEL PACIENTE PARA LUEGO
 % ESTABLECER EL PACIENTE JUNTO CON LA ENFERMEDAD QUE SE HAYA ESTABLECIDO
 % ----------------------------------------------------------------------
-go :-
-    write('El nombre del paciente es: '),
+programa :-
+    write('--------------------------------------------------'),nl,
+    write('                   Consultario del Puvlo y Nuwidra'),nl,
+    write('--------------------------------------------------'),nl,
+    write('Ingrese su nombre para realizarle un diagnostico'),nl,
+    write('--------------------------------------------------'),nl,
+    write('El nombre del paciente es: '),nl,
+    write('--------------------------------------------------'),nl,
     read(Paciente),
+    write('--------------------------------------------------'),nl,
+    write('Debe de elegir sus padecimientos para recibir un diagnostico: '),nl,
+     write('--------------------------------------------------'),nl,
     posible_enfermedad_padecible(Paciente,Padecimiento),nl,
-    recomendacion_posible_enfermedad_padecible(Paciente,Recomendacion),
+    write('--------------------------------------------------'),nl,
     arreglo_escribir_lista(['El diagnostico seria que tienes ',Padecimiento,'.']),nl,
+    write('--------------------------------------------------'),nl,
+    write('La recomendacion para el padecimiento es el siguiente: '),nl,
+    write('--------------------------------------------------'),nl,
+    recomendacion_posible_enfermedad_padecible(Paciente,Recomendacion),
+     write('--------------------------------------------------'),nl,
     arreglo_escribir_lista(['La recomendacion seria ',Recomendacion,'.']).
 
-go :-
+programa :-
     % -------------------------------------------------------------------------------------------
     % SI NO SE ENCUENTRA ALGUNA ENFERMEDAD O PADECIMIENTO ASOCIADO SE RETORNA EL SIGUIETE MENSAJE
     % -------------------------------------------------------------------------------------------
