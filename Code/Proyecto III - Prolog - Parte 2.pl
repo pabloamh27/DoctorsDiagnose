@@ -12,8 +12,10 @@
 go :-
     write('El nombre del paciente es: '),
     read(Paciente),
-    posible_enfermedad_padecible(Paciente,Padecimiento),
-    arreglo_escribir_lista(['El diagnostico seria que tienes ',Padecimiento,'.']).
+    posible_enfermedad_padecible(Paciente,Padecimiento),nl,
+    recomendacion_posible_enfermedad_padecible(Paciente,Recomendacion),
+    arreglo_escribir_lista(['El diagnostico seria que tienes ',Padecimiento,'.']),nl,
+    arreglo_escribir_lista(['La recomendacion seria ',Recomendacion,'.']).
 
 go :-
     % -------------------------------------------------------------------------------------------
@@ -215,11 +217,24 @@ posible_enfermedad_padecible(Paciente,'una infeccion de transmision sexual') :-
     sintoma_enfermedad_pregunta(Paciente,dolor_coito),
     sintoma_enfermedad_pregunta(Paciente,llagas_genitales).
 
+recomendacion_posible_enfermedad_padecible(Paciente,'ve urgentemente a un medico, o bien un ginecologo') :-
+    sintoma_enfermedad_pregunta(Paciente,ardor_orinar),
+    sintoma_enfermedad_pregunta(Paciente,fiebre),
+    sintoma_enfermedad_pregunta(Paciente,dolor_coito),
+    sintoma_enfermedad_pregunta(Paciente,llagas_genitales).
+
 % ----------------------------------------------------------------------
 % REQUISITOS PARA EL COVID-19
 % ----------------------------------------------------------------------
 posible_enfermedad_padecible(Paciente,'COVID-19, deberias hacerte la prueba') :-
-    sintoma_enfermedad_pregunta(Paciente,fever),
+    sintoma_enfermedad_pregunta(Paciente,fiebre),
+    sintoma_enfermedad_pregunta(Paciente,tos),
+    sintoma_enfermedad_pregunta(Paciente,cansancio),
+    sintoma_enfermedad_pregunta(Paciente,perdida_gusto_olfato),
+    sintoma_enfermedad_pregunta(Paciente,diarrea).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'tienes que ir a tu respectivo centro de salud') :-
+    sintoma_enfermedad_pregunta(Paciente,fiebre),
     sintoma_enfermedad_pregunta(Paciente,tos),
     sintoma_enfermedad_pregunta(Paciente,cansancio),
     sintoma_enfermedad_pregunta(Paciente,perdida_gusto_olfato),
@@ -228,7 +243,14 @@ posible_enfermedad_padecible(Paciente,'COVID-19, deberias hacerte la prueba') :-
 % ----------------------------------------------------------------------
 % REQUISITOS PARA UNA GESTRITIS NERVIOSA
 % ----------------------------------------------------------------------
-posible_enfermedad_padecible(Paciente,'probablemente una gastritis nerviosa') :-
+posible_enfermedad_padecible(Paciente,'una posible gastritis nerviosa') :-
+    sintoma_enfermedad_pregunta(Paciente,nauseas),
+    sintoma_enfermedad_pregunta(Paciente,acidez),
+    sintoma_enfermedad_pregunta(Paciente,pesadez),
+    sintoma_enfermedad_pregunta(Paciente,dolor_abdominal),
+    sintoma_enfermedad_pregunta(Paciente,estres).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'deberias hacerte un lavado intestinal y tratar tu estres') :-
     sintoma_enfermedad_pregunta(Paciente,nauseas),
     sintoma_enfermedad_pregunta(Paciente,acidez),
     sintoma_enfermedad_pregunta(Paciente,pesadez),
@@ -244,10 +266,21 @@ posible_enfermedad_padecible(Paciente,'gastritis') :-
     sintoma_enfermedad_pregunta(Paciente, pesadez),
     sintoma_enfermedad_pregunta(Paciente, dolor_abdominal).
 
+recomendacion_posible_enfermedad_padecible(Paciente,'deberias hacerte un lavado intestinal') :-
+    sintoma_enfermedad_pregunta(Paciente, nauseas),
+    sintoma_enfermedad_pregunta(Paciente, acidez),
+    sintoma_enfermedad_pregunta(Paciente, pesadez),
+    sintoma_enfermedad_pregunta(Paciente, dolor_abdominal).
+
 % ----------------------------------------------------------------------
 % REQUISITOS PARA UNA GASTROENTENRITIS VIRAL
 % ----------------------------------------------------------------------
 posible_enfermedad_padecible(Paciente,'una gastroentenritis viral') :-
+    sintoma_enfermedad_pregunta(Paciente,vomito),
+    sintoma_enfermedad_pregunta(Paciente,diarrea),
+    sintoma_enfermedad_pregunta(Paciente,nauseas).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'deberias ir a urgencias') :-
     sintoma_enfermedad_pregunta(Paciente,vomito),
     sintoma_enfermedad_pregunta(Paciente,diarrea),
     sintoma_enfermedad_pregunta(Paciente,nauseas).
@@ -259,10 +292,20 @@ posible_enfermedad_padecible(Paciente,'una infeccion en el oido') :-
     sintoma_enfermedad_pregunta(Paciente,dolor_oido),
     sintoma_enfermedad_pregunta(Paciente,fiebre).
 
+posible_enfermedad_padecible(Paciente,'debes de ir urgentemente a un medico, se puede infectar') :-
+    sintoma_enfermedad_pregunta(Paciente,dolor_oido),
+    sintoma_enfermedad_pregunta(Paciente,fiebre).
+
 % ----------------------------------------------------------------------
 % REQUISITOS
 % ----------------------------------------------------------------------
 posible_enfermedad_padecible(Paciente,'hipertension') :-
+    sintoma_enfermedad_pregunta(Paciente,sangrado_nasal),
+    sintoma_enfermedad_pregunta(Paciente,cambio_vision),
+    sintoma_enfermedad_pregunta(Paciente,vomito),
+    sintoma_enfermedad_pregunta(Paciente,fiebre).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'deberias tomarte tus medicamenteos respectivos') :-
     sintoma_enfermedad_pregunta(Paciente,sangrado_nasal),
     sintoma_enfermedad_pregunta(Paciente,cambio_vision),
     sintoma_enfermedad_pregunta(Paciente,vomito),
@@ -279,10 +322,23 @@ posible_enfermedad_padecible(Paciente,'sintomas asociados al cancer, hazte exame
     sintoma_enfermedad_pregunta(Paciente,sudor),
     sintoma_enfermedad_pregunta(Paciente,no_comer).
 
+recomendacion_posible_enfermedad_padecible(Paciente,'debes de operarte lo antes posible') :-
+    sintoma_enfermedad_pregunta(Paciente,cansancio),
+    sintoma_enfermedad_pregunta(Paciente,tos),
+    sintoma_enfermedad_pregunta(Paciente,fiebre),
+    sintoma_enfermedad_pregunta(Paciente,hemorragia),
+    sintoma_enfermedad_pregunta(Paciente,sudor),
+    sintoma_enfermedad_pregunta(Paciente,no_comer).
+
 % ----------------------------------------------------------------------
 % REQUISITOS PARA UNA FRACTURA INTERNA
 % ----------------------------------------------------------------------
 posible_enfermedad_padecible(Paciente,'una fractura interna, mejor hazte una radiografia') :-
+    sintoma_enfermedad_pregunta(Paciente,pesadez),
+    sintoma_enfermedad_pregunta(Paciente,sangrado_nasal),
+    sintoma_enfermedad_pregunta(Paciente,nauseas).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'tienen que enyesarte urgentemente la cara') :-
     sintoma_enfermedad_pregunta(Paciente,pesadez),
     sintoma_enfermedad_pregunta(Paciente,sangrado_nasal),
     sintoma_enfermedad_pregunta(Paciente,nauseas).
@@ -294,4 +350,10 @@ posible_enfermedad_padecible(Paciente,'algun tipo de depresion, ve con el psicol
     sintoma_enfermedad_pregunta(Paciente,no_comer),
     sintoma_enfermedad_pregunta(Paciente,cansancio),
     sintoma_enfermedad_pregunta(Paciente,pesadez).
+
+recomendacion_posible_enfermedad_padecible(Paciente,'debes de ir a un pediatra de ser necesario que el psicologo no funcione') :-
+    sintoma_enfermedad_pregunta(Paciente,no_comer),
+    sintoma_enfermedad_pregunta(Paciente,cansancio),
+    sintoma_enfermedad_pregunta(Paciente,pesadez).
+
 
